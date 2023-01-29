@@ -11,7 +11,7 @@ public class OrderModal {
     private final WebDriver driver;
     private final By popup = By.xpath(".//div[@class = 'Order_Modal__YZ-d3']");
     private final By confirmOrderButton = By.xpath(".//div[@class = 'Order_Buttons__1xGrp']/button[text()='Да']");
-    private final By createOrderModalText = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ']");
+    private final By createOrderModalText = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ' and text()='Заказ оформлен']");
 
     public OrderModal(WebDriver driver) {
         this.driver = driver;
