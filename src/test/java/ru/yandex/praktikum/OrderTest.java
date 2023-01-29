@@ -38,7 +38,7 @@ public class OrderTest {
     }
 
     @Test
-    public void HeaderButtonFlowTest() {
+    public void OrderScooterTest() {
 
         driver = new ChromeDriver();
         driver.get(Setup.BASE_URL);
@@ -71,7 +71,7 @@ public class OrderTest {
     }
 
     @After
-    public void HeaderButtonFlowTestsClose() {
+    public void OrderScooterTestClose() {
         driver.quit();
     }
 }
