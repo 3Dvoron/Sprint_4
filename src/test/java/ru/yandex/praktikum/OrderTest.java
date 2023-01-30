@@ -1,12 +1,12 @@
 package ru.yandex.praktikum;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.yandex.praktikum.pages.AboutCustomersPage;
 import ru.yandex.praktikum.pages.MainPage;
 import ru.yandex.praktikum.pages.OrderModal;
@@ -37,29 +37,27 @@ public class OrderTest {
         };
     }
 
-    @Test
-    public void OrderScooterTest() {
-
+    @Before
+    public void configBrowser() {
         driver = new ChromeDriver();
         driver.get(Setup.BASE_URL);
+    }
 
+    @Test
+    public void orderScooterHeaderFlowTest() {
         MainPage mainPage = new MainPage(driver);
-        if (name.equals("Виталий")) {
-            mainPage.clickHeaderOrderButton();
-        } else {
-            mainPage.clickMainOrderButton();
-        }
+        mainPage.clickHeaderOrderButton();
         AboutCustomersPage aboutCustomersPage = new AboutCustomersPage(driver);
         aboutCustomersPage.setNameField(name);
         aboutCustomersPage.setSurnameField(surname);
-        aboutCustomersPage.setAdressField(address);
-        aboutCustomersPage.choiseStation();
+        aboutCustomersPage.setAddressField(address);
+        aboutCustomersPage.choiceStation();
         aboutCustomersPage.setPhoneField(phone);
         aboutCustomersPage.clickNextButton();
 
         RentInfoPage rentInfoPage = new RentInfoPage(driver);
-        rentInfoPage.choiseStartDate();
-        rentInfoPage.choisePeriodRent();
+        rentInfoPage.choiceStartDate();
+        rentInfoPage.choicePeriodRent();
         rentInfoPage.clickCheckboxColor();
         rentInfoPage.setCommentField(comment);
         rentInfoPage.clickOrderButton();
@@ -67,11 +65,41 @@ public class OrderTest {
         OrderModal orderModal = new OrderModal(driver);
         orderModal.checkOpenPopup();
         orderModal.clickConfirmButton();
-        orderModal.checkOpenPopapOrderCreate();
+        orderModal.checkOpenPopupOrderCreate();
     }
 
     @After
-    public void OrderScooterTestClose() {
+    public void orderScooterHeaderFlowTestClose() {
+        driver.quit();
+    }
+
+    @Test
+    public void orderScooterMainFlowTest() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.clickMainOrderButton();
+        AboutCustomersPage aboutCustomersPage = new AboutCustomersPage(driver);
+        aboutCustomersPage.setNameField(name);
+        aboutCustomersPage.setSurnameField(surname);
+        aboutCustomersPage.setAddressField(address);
+        aboutCustomersPage.choiceStation();
+        aboutCustomersPage.setPhoneField(phone);
+        aboutCustomersPage.clickNextButton();
+
+        RentInfoPage rentInfoPage = new RentInfoPage(driver);
+        rentInfoPage.choiceStartDate();
+        rentInfoPage.choicePeriodRent();
+        rentInfoPage.clickCheckboxColor();
+        rentInfoPage.setCommentField(comment);
+        rentInfoPage.clickOrderButton();
+
+        OrderModal orderModal = new OrderModal(driver);
+        orderModal.checkOpenPopup();
+        orderModal.clickConfirmButton();
+        orderModal.checkOpenPopupOrderCreate();
+    }
+
+    @After
+    public void orderScooterMainFlowTestClose() {
         driver.quit();
     }
 }

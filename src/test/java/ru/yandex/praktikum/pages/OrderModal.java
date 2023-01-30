@@ -26,7 +26,7 @@ public class OrderModal {
         driver.findElement(confirmOrderButton).click();
     }
 
-    public void checkOpenPopapOrderCreate() {
+    public void checkOpenPopupOrderCreate() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(createOrderModalText));
     }

@@ -21,14 +21,14 @@ public class RentInfoPage {
         this.driver = driver;
     }
 
-    public void choiseStartDate() {
+    public void choiceStartDate() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(startDateRentField));
         driver.findElement(startDateRentField).click();
         driver.findElement(startDataRent).click();
     }
 
-    public void choisePeriodRent() {
+    public void choicePeriodRent() {
         driver.findElement(rentalPeriodField).click();
         driver.findElement(periodRent).click();
     }
@@ -38,6 +38,7 @@ public class RentInfoPage {
     }
 
     public void setCommentField(String comment) {
+        driver.findElement(commentField).clear();
         driver.findElement(commentField).sendKeys(comment);
     }
 
